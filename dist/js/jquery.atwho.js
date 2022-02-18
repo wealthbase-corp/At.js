@@ -212,7 +212,7 @@ App = (function() {
         _this.isComposing = true;
         return null;
       };
-    })(this)).on('compositionupdate', (function(_this) {
+    })(this)).on('compositionend', (function(_this) {
       return function(e) {
         _this.isComposing = false;
         setTimeout(function(e) {
