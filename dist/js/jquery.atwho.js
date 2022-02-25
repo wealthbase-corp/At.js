@@ -745,7 +745,7 @@ EditableController = (function(superClass) {
     if (($query = $(".atwho-query", this.app.document)).length > 0 && $query.is(':empty') && $query.text().length === 0) {
       $query.remove();
     }
-    if ($query.length > 0 && $query.text().startsWith(this.at + this.at)) {
+    if (this.app.isComposing && $query.length > 0 && $query.text().startsWith(this.at + this.at)) {
       $query.text($query.text().replace(this.at + this.at, this.at));
     }
     if (!this._movingEvent(e)) {
