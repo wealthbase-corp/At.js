@@ -212,7 +212,7 @@ App = (function() {
         _this.isComposing = true;
         return null;
       };
-    })(this)).on('compositionupdate', (function(_this) {
+    })(this)).on('compositionend', (function(_this) {
       return function(e) {
         _this.isComposing = false;
         setTimeout(function(e) {
@@ -744,6 +744,9 @@ EditableController = (function(superClass) {
     $(range.startContainer).closest('.atwho-inserted').addClass('atwho-query').siblings().removeClass('atwho-query');
     if (($query = $(".atwho-query", this.app.document)).length > 0 && $query.is(':empty') && $query.text().length === 0) {
       $query.remove();
+    }
+    if (this.app.isComposing && $query.length > 0 && $query.text().startsWith(this.at + this.at)) {
+      $query.text($query.text().replace(this.at + this.at, this.at));
     }
     if (!this._movingEvent(e)) {
       $query.removeClass('atwho-inserted');
